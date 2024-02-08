@@ -1,0 +1,12 @@
+BeaverHouse/aecheck-v3:
+  - source: result/image/
+    dest: public/image/data/
+    deleteOrphaned: true
+  - source: result/data/
+    dest: src/data/
+    deleteOrphaned: true
+  - source: result/i18n/
+    dest: src/i18n/
+    deleteOrphaned: true
+  - source: result/updates.tsx
+    dest: src/constant/updates.tsx

@@ -1,0 +1,20 @@
+name: Sync data to BeaverHouse/aecheck-v3
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - result/updates.tsx
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: BetaHuhn/repo-file-sync-action@v1
+        with:
+          GH_PAT: ${{ secrets.GH_PAT_ORGANIZATION }}
+          CONFIG_PATH: .github/sync.yml
+          PR_LABELS: false
+          ASSIGNEES: HU-Lee
