@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/HU-Lee/aecheck-data">
+  <a href="https://github.com/BeaverHouse/aecheck-data">
     <img src="logo.png" alt="Logo">
   </a>
 
@@ -7,9 +7,9 @@
     Data & processing code for AE Check
     <br>
     <br>
-    <a href="https://github.com/HU-Lee/aecheck-data/issues">Bug Report</a>
+    <a href="https://github.com/BeaverHouse/aecheck-data/issues">Bug Report</a>
     |
-    <a href="https://github.com/HU-Lee/aecheck-data/issues">Request to HU-Lee</a>
+    <a href="https://github.com/BeaverHouse/aecheck-data/issues">Request to HU-Lee</a>
   </p>
 
   <p align="center">
@@ -26,7 +26,7 @@
       <img src="https://img.shields.io/badge/Pytest-0A9EDC.svg?style=flat&logo=Pytest&logoColor=white" alt="Pytest">
     </a>
     <a href="./LICENSE">
-      <img src="https://img.shields.io/github/license/HU-Lee/aecheck-data" alt="License">
+      <img src="https://img.shields.io/github/license/BeaverHouse/aecheck-data" alt="License">
     </a>
   </p>
 </p>
