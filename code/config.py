@@ -10,7 +10,7 @@ BUDDY_TITLE = "バディ一覧"
 FILE_NAME = "data.xlsx"
 IMG_SOURCE_PATH = "rawimage"
 
-CHARACTER_SHEET_NAME =      "캐릭터"
+CHARACTER_SHEET_NAME =      "character"
 BUDDY_SHEET_NAME =          "버디"
 PERSONALITY_SHEET_NAME =    "v3_seesaa"
 DUNGEON_SHEET_NAME =        "dungeon"
