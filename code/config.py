@@ -1,4 +1,4 @@
-# Seesaa wiki base URL
+# Seesaa Wiki base URL
 SEESAA_URL = "https://anothereden.game-info.wiki"
 
 STAR4_TITLE = "☆4キャラ一覧"
