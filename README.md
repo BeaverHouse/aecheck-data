@@ -51,7 +51,7 @@ It is processed manually and migrated to [frontend repository][aecheck-v3].
 **Data source**
 
 - Raw app data
-- [Seesaa wiki][seesaa]
+- [Seesaa Wiki][seesaa]
 - [AE wiki][aewiki]
 - [altema.jp][altema]
 
@@ -86,7 +86,7 @@ poetry install
 ## File description
 
 - `step0.py`
-  - It imports personality data from [Seesaa wiki][seesaa].
+  - It imports personality data from [Seesaa Wiki][seesaa].
 - `step1.py`
   - It adds the missing i18n tags.
 - `step2.py`
