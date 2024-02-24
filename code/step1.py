@@ -72,7 +72,7 @@ def add_char_book_tags() -> None:
                 pd.DataFrame([{"tag": f"book.char{char_rows.iloc[0,0]}", "kor": book}])
             ], ignore_index=True)
 
-        with pd.ExcelWriter(FILE_NAME, mode="a", if_sheet_exists="overlay") as writer:
+        with pd.ExcelWriter(FILE_NAME, mode="a", if_sheet_exists="overlay", engine="openpyxl", engine_kwargs={ "data_only": True }) as writer:
             translate_df.to_excel(writer, sheet_name=TRANSLATE_SHEET_NAME, index=False)
 
 
@@ -129,10 +129,11 @@ def add_dungeon_tags(wb: Workbook) -> None:
             t_sheet.append([tag, kor_name])
 
 def make_translate_sheet() -> None:
-    wb = openpyxl.open(FILE_NAME, data_only=True)
-    
     add_personality_tags()
     add_char_book_tags()
+
+    wb = openpyxl.open(FILE_NAME, data_only=True)
+
     add_buddy_tags(wb=wb)
     add_dungeon_tags(wb=wb)
 
