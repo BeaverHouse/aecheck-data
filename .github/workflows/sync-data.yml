@@ -16,5 +16,5 @@ jobs:
         with:
           GH_PAT: ${{ secrets.GH_PAT_ORGANIZATION }}
           COMMIT_PREFIX: 🚀
-          PR_LABELS: false
+          PR_LABELS: Content/Data
           ASSIGNEES: HU-Lee
