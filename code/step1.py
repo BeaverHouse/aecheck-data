@@ -129,10 +129,11 @@ def add_dungeon_tags(wb: Workbook) -> None:
             t_sheet.append([tag, kor_name])
 
 def make_translate_sheet() -> None:
-    wb = openpyxl.open(FILE_NAME, data_only=True)
-    
     add_personality_tags()
     add_char_book_tags()
+
+    wb = openpyxl.open(FILE_NAME, data_only=True)
+    
     add_buddy_tags(wb=wb)
     add_dungeon_tags(wb=wb)
 
