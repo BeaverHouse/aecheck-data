@@ -6893,7 +6893,7 @@
 			"personality.p010",
 			"personality.p045",
 			"personality.p072",
-			"staralign.false",
+			"staralign.true",
 			"style.normal",
 			"type.shadow"
 		],
