@@ -83,14 +83,14 @@ def make_data(wb: Workbook):
         id: int             = int(row[0].value)
         style: str          = str(row[2].value)
         code: int           = int(row[3].value)
-        get: str            = str(row[6].value).upper()
-        type: str           = str(row[7].value)
-        from_arr: list[int]     = list(map(int, str(row[10].value).split(","))) if row[10].value else []
-        change_arr: list[int]   = list(map(int, str(row[11].value).split(","))) if row[11].value else []
-        drop_arr: list[str]     = list(map(lambda x: find_dungeon_id(dungeon_df, x), row[13].value.split(",") if row[13].value else []))
-        alter: str          = "TRUE" if row[14].value else "FALSE"
-        manifest: str       = row[15].value or "없음"
-        staralign: str          = "TRUE" if row[17].value else "FALSE"
+        get: str            = str(row[4].value).upper()
+        type: str           = str(row[5].value)
+        from_arr: list[int]     = list(map(int, str(row[8].value).split(","))) if row[8].value else []
+        change_arr: list[int]   = list(map(int, str(row[9].value).split(","))) if row[9].value else []
+        drop_arr: list[str]     = list(map(lambda x: find_dungeon_id(dungeon_df, x), row[11].value.split(",") if row[11].value else []))
+        alter: str          = "TRUE" if row[12].value else "FALSE"
+        manifest: str       = row[13].value or "없음"
+        staralign: str          = "TRUE" if row[15].value else "FALSE"
 
         tags: list[str] = [
             PARSE_REF_DICT["style"][style],
