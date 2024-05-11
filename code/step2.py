@@ -125,7 +125,7 @@ def make_data(wb: Workbook):
             tags += list(map(lambda x: find_personality_tag(translate_df, x), p_tag_list.split(",")))
 
         # 업데이트 지연에 따른 조건문...
-        if id <= 366:
+        if id <= 368:
             # Seesaa Wiki Mapping
             seesaa_endpoint = keyword.replace("(AS)", "(アナザースタイル)") \
                 .replace("(ES)", "(エクストラスタイル)") \
@@ -199,7 +199,7 @@ def make_data(wb: Workbook):
     for row in bud_sheet.iter_rows(min_row=2):
         if row[0].value is None: break
         id: int                 = int(row[0].value)
-        code: int               = int(row[2].value)
+        code: int               = row[2].value
         link_arr: list[int]     = list(map(int, str(row[3].value).split(","))) if row[3].value else []
         get: str = "get.notfree" if len(link_arr) > 0 else f"get.buddy{id}"
 
