@@ -59,7 +59,7 @@ def add_char_book_tags() -> None:
         with pd.ExcelWriter(FILE_NAME, mode="a", if_sheet_exists="overlay") as writer:
             translate_df.to_excel(writer, sheet_name=TRANSLATE_SHEET_NAME, index=False)
     
-    char_books = set(character_df.loc[character_df["book"].notnull()].iloc[:,12])
+    char_books = set(character_df.loc[character_df["book"].notnull()].iloc[:,8])
     translated_books = set(translate_df.loc[(translate_df["tag"].str.startswith("book.char"))].iloc[:,1])
 
     new_books = char_books - translated_books
