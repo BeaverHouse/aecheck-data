@@ -83,14 +83,14 @@ def make_data(wb: Workbook):
         id: int             = int(row[0].value)
         style: str          = str(row[2].value)
         code: int           = int(row[3].value)
-        get: str            = str(row[6].value).upper()
-        type: str           = str(row[7].value)
-        from_arr: list[int]     = list(map(int, str(row[10].value).split(","))) if row[10].value else []
-        change_arr: list[int]   = list(map(int, str(row[11].value).split(","))) if row[11].value else []
-        drop_arr: list[str]     = list(map(lambda x: find_dungeon_id(dungeon_df, x), row[13].value.split(",") if row[13].value else []))
-        alter: str          = "TRUE" if row[14].value else "FALSE"
-        manifest: str       = row[15].value or "없음"
-        staralign: str          = "TRUE" if row[17].value else "FALSE"
+        get: str            = str(row[4].value).upper()
+        type: str           = str(row[5].value)
+        from_arr: list[int]     = list(map(int, str(row[6].value).split(","))) if row[6].value else []
+        change_arr: list[int]   = list(map(int, str(row[7].value).split(","))) if row[7].value else []
+        drop_arr: list[str]     = list(map(lambda x: find_dungeon_id(dungeon_df, x), row[9].value.split(",") if row[9].value else []))
+        alter: str          = "TRUE" if row[10].value else "FALSE"
+        manifest: str       = row[11].value or "없음"
+        staralign: str          = "TRUE" if row[12].value else "FALSE"
 
         tags: list[str] = [
             PARSE_REF_DICT["style"][style],
@@ -125,7 +125,7 @@ def make_data(wb: Workbook):
             tags += list(map(lambda x: find_personality_tag(translate_df, x), p_tag_list.split(",")))
 
         # 업데이트 지연에 따른 조건문...
-        if id <= 366:
+        if id <= 368:
             # Seesaa Wiki Mapping
             seesaa_endpoint = keyword.replace("(AS)", "(アナザースタイル)") \
                 .replace("(ES)", "(エクストラスタイル)") \
@@ -199,7 +199,7 @@ def make_data(wb: Workbook):
     for row in bud_sheet.iter_rows(min_row=2):
         if row[0].value is None: break
         id: int                 = int(row[0].value)
-        code: int               = int(row[2].value)
+        code: int               = row[2].value
         link_arr: list[int]     = list(map(int, str(row[3].value).split(","))) if row[3].value else []
         get: str = "get.notfree" if len(link_arr) > 0 else f"get.buddy{id}"
 
