@@ -125,7 +125,7 @@ def make_data(wb: Workbook):
             tags += list(map(lambda x: find_personality_tag(translate_df, x), p_tag_list.split(",")))
 
         # 업데이트 지연에 따른 조건문...
-        if id <= 368:
+        if id <= 370:
             # Seesaa Wiki Mapping
             seesaa_endpoint = keyword.replace("(AS)", "(アナザースタイル)") \
                 .replace("(ES)", "(エクストラスタイル)") \
