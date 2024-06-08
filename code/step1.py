@@ -36,7 +36,7 @@ def add_personality_tags() -> None:
                 pd.DataFrame([{"tag": f"personality.{idx+1+tagged_p_count}", "jap": p}])
             ], ignore_index=True)
 
-        with pd.ExcelWriter(FILE_NAME, mode="a") as writer:
+        with pd.ExcelWriter(FILE_NAME, mode="a", if_sheet_exists="overlay", engine="openpyxl", engine_kwargs={ "data_only": True }) as writer:
             translate_df.to_excel(writer, sheet_name=TRANSLATE_SHEET_NAME, index=False)
 
 def add_char_book_tags() -> None:

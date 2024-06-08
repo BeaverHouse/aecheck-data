@@ -70,7 +70,7 @@ def parse_bs(object: bs4.BeautifulSoup, write_year: bool = False) -> None:
     # 시트의 첫 열 = key값 = 일어 이름
     key_list = list(filter(lambda x: x is not None and len(x) > 0, [i[0].value for i in sheet.iter_rows(min_row=2)]))
 
-    exclude_name = ["アルド", "リュゼ"]
+    exclude_name = ["アルド", "リュゼ", "サザンカ"]
     for n, p in dic.items():
         personality_str = ",".join(p["personalities"])
         year = p["year"]
