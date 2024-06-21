@@ -217,7 +217,7 @@ def make_data(wb: Workbook):
         )
             
         # AE Wiki Mapping
-        aewiki_endpoint = eng_keyword.replace(" ", "_")
+        aewiki_endpoint = eng_keyword.replace(" ", "_").replace("(AS)", "_(Another_Style)")
         if eng_keyword == "Iridian": 
             aewiki_url = f'https://anothereden.wiki/w/{aewiki_endpoint}'
             test_res = requests.get(aewiki_url)
