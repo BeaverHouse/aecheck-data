@@ -125,7 +125,7 @@ def make_data(wb: Workbook):
             tags += list(map(lambda x: find_personality_tag(translate_df, x), p_tag_list.split(",")))
 
         # 업데이트 지연에 따른 조건문...
-        if id <= 370:
+        if id <= 374:
             # Seesaa Wiki Mapping
             seesaa_endpoint = keyword.replace("(AS)", "(アナザースタイル)") \
                 .replace("(ES)", "(エクストラスタイル)") \
@@ -218,7 +218,7 @@ def make_data(wb: Workbook):
             
         # AE Wiki Mapping
         aewiki_endpoint = eng_keyword.replace(" ", "_").replace("(AS)", "_(Another_Style)")
-        if eng_keyword == "Iridian": 
+        if eng_keyword in ["Iridian", "Thysía"]: 
             aewiki_url = f'https://anothereden.wiki/w/{aewiki_endpoint}'
             test_res = requests.get(aewiki_url)
             if not test_res.ok:
