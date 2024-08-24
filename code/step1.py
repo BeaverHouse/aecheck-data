@@ -33,7 +33,7 @@ def add_personality_tags() -> None:
         for idx, p in enumerate(new_p_list):
             translate_df = pd.concat([
                 translate_df, 
-                pd.DataFrame([{"tag": f"personality.{idx+1+tagged_p_count}", "jap": p}])
+                pd.DataFrame([{"tag": f"personality.p{idx+1+tagged_p_count}", "jap": p}])
             ], ignore_index=True)
 
         with pd.ExcelWriter(FILE_NAME, mode="a", if_sheet_exists="overlay", engine="openpyxl", engine_kwargs={ "data_only": True }) as writer:
