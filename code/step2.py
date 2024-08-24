@@ -144,7 +144,7 @@ def make_data(wb: Workbook):
                 .replace(" ", "_")        
                 
             aewiki_url = f'https://anothereden.wiki/w/{aewiki_endpoint}'
-            if "(Alter)" in aewiki_endpoint:            
+            if "(Alter)" in aewiki_endpoint or "Strawboy" in aewiki_endpoint:            
                 test_res = requests.get(aewiki_url)
                 if not test_res.ok:
                     print(f'\nAE Wiki url 오류! 이름 : {eng_keyword}')
