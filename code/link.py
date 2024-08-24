@@ -31,7 +31,7 @@ def update_seesaa_links():
 
 def update_aewiki_links():
     base_url: str = "https://anothereden.wiki/w/"
-    endpoints: list[str] = ["Full_Characters_List", "Sidekick"]
+    endpoints: list[str] = ["Characters", "Sidekick"]
 
     try:
         os.remove("code/links/aewiki.txt")
