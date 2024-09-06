@@ -202,6 +202,7 @@
 	"book.char387": "アイスドール",
 	"book.char388": "ブライアローズ",
 	"book.char39": "ジャッジメント",
+	"book.char390": "九天玄女",
 	"book.char40": "レミテーター",
 	"book.char42": "ソウルブリンガー",
 	"book.char43": "ゼーレグナーデ",
@@ -657,6 +658,5 @@
 	"style.four": "4☆",
 	"style.normal": "NS",
 	"type.light": "天",
-	"type.shadow": "冥",
-	"book.char390": "九天玄女"
+	"type.shadow": "冥"
 }
