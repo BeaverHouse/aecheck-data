@@ -76,6 +76,7 @@ def parse_bs(object: bs4.BeautifulSoup, write_year: bool = False) -> None:
         year = p["year"]
 
         if n not in key_list:
+            if n in ["京", "舞", "テリー", "クーラ"]: continue
             print("add", n)
             sheet.append([n, personality_str, year, today])
         else:
