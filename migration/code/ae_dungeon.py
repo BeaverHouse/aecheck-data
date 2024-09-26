@@ -6,12 +6,12 @@ from oracle import get_oracle
 TABLE_NAME = "ae_dungeon"
 
 def update_ae_dungeon():    
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time = datetime.datetime.now()
     dungeon_json: list = json.load(open('result/data/dungeon.json', 'r', encoding='utf-8'))
 
     dungeon_data = list(map(
         lambda x: [
-            "dungeon" + str(x['id']), 
+            "dungeon" + str(x['id']).zfill(4), 
             x['altema'],
             x['wiki'],
             time

@@ -6,7 +6,7 @@ from oracle import get_oracle
 TABLE_NAME = "ae_personality_map"
 
 def update_ae_personality_map():    
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time = datetime.datetime.now()
     character_json: list = json.load(open('result/data/character.json', 'r', encoding='utf-8'))
     
     update_info = []
@@ -14,7 +14,7 @@ def update_ae_personality_map():
         personalities = [x for x in character["tags"] if "personality" in x]
         for personality in personalities:
             update_info.append([
-                f'char{character["id"]}',
+                f'char{str(character["id"]).zfill(4)}',
                 f'personality{personality.replace("personality.p", "")}',
                 time
             ])
@@ -22,6 +22,7 @@ def update_ae_personality_map():
     with get_oracle() as conn:
         cur = conn.cursor()
         cur.execute(f"DELETE FROM {TABLE_NAME} WHERE character_id LIKE 'char%'")
+        conn.commit()
             
         cur.executemany(
             f"""INSERT INTO {TABLE_NAME} (

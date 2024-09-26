@@ -29,29 +29,31 @@ def get_manifest_level(character) -> int:
     else: return int(manifest_tags[0].replace("manifest.step", ""))
 
 def get_alter_character(character, character_json) -> str:
+    if "change" not in character: return None
     for id in character["change"]:
-        target = list(filter(lambda x: x["id"] == id, character_json))
+        target = list(filter(lambda x: x["id"] == id, character_json))[0]
         if target["code"] != character["code"]:
             return target["code"]
     return None
 
 def update_ae_dungeon():    
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time = datetime.datetime.now()
     character_json: list = json.load(open('result/data/character.json', 'r', encoding='utf-8'))
     
     character_data = list(map(
         lambda x: [
-            f'char{x["id"]}', 
+            f'char{str(x["id"]).zfill(4)}', 
             f'c{x['code']}',
             get_category(x),
             get_style(x),
             "light" if "type.light" in x["tags"] else "dark",
             get_manifest_level(x),
-            "staralign.true" in x["tags"],
-            get_alter_character(x, character_json),
-            x["seesaa"],
-            x["aewiki"],
-            x["year"].replace("/", "-") if x["year"] else None,
+            1 if "staralign.true" in x["tags"] else 0,
+            1 if "alter.true" in x["tags"] else 0,
+            f'c{get_alter_character(x, character_json)}' if get_alter_character(x, character_json) else None,
+            x["seesaa"] if "seesaa" in x else None,
+            x["aewiki"] if "aewiki" in x else None,
+            datetime.datetime.strptime(x["year"], "%Y/%m/%d") if "year" in x else None,
             time
         ],
         character_json
@@ -72,14 +74,16 @@ def update_ae_dungeon():
                 category,
                 style,
                 light_shadow,
-                manifest_level,
+                max_manifest,
                 is_awaken,
+                is_alter,
                 alter_character,
                 seesaa_url,
                 aewiki_url,
+                update_date,
                 created_at
             ) VALUES (
-                :1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11
+                :1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13
             )""",
             update_info
         )

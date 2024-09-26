@@ -6,13 +6,13 @@ from oracle import get_oracle
 TABLE_NAME = "ae_buddy"
 
 def update_ae_buddy():    
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time = datetime.datetime.now()
     buddy_json: list = json.load(open('result/data/buddy.json', 'r', encoding='utf-8'))
 
     buddy_data = list(map(
         lambda x: [
             "buddy" + str(x['id']), 
-            "char" + str(x['link'][0]) if x['link'] else None,
+            "char" + str(x['link'][0]).zfill(4) if x['link'] else None,
             x['get'] if x['get'] and x['get'].strip() != "get.notfree" else None,
             x['seesaa'],
             x['aewiki'],
