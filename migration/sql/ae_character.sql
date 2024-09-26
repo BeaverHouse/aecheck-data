@@ -8,6 +8,7 @@ CREATE TABLE ae_character (
     alter_character         VARCHAR2(20) NOT NULL,
     seesaa_url              VARCHAR2(500),
     aewiki_url              VARCHAR2(500),
+    update_date             DATE NOT NULL,
     created_at              TIMESTAMP(6) NOT NULL,
     updated_at              TIMESTAMP(6),
     deleted_at              TIMESTAMP(6),

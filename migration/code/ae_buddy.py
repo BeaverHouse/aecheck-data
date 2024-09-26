@@ -1,10 +1,12 @@
 import json
+import datetime
 
 from oracle import get_oracle
 
 TABLE_NAME = "ae_buddy"
 
 def update_ae_buddy():    
+    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     buddy_json: list = json.load(open('result/data/buddy.json', 'r', encoding='utf-8'))
 
     buddy_data = list(map(
@@ -13,7 +15,8 @@ def update_ae_buddy():
             "char" + str(x['link'][0]) if x['link'] else None,
             x['get'] if x['get'] and x['get'].strip() != "get.notfree" else None,
             x['seesaa'],
-            x['aewiki']
+            x['aewiki'],
+            time
         ],
         buddy_json
     ))
@@ -27,7 +30,7 @@ def update_ae_buddy():
             print("nothing to update")
             return
         cur.executemany(
-            f"INSERT INTO {TABLE_NAME} (buddy_id, character_id, get_path, seesaa_url, aewiki_url) VALUES (:1, :2, :3, :4, :5)",
+            f"INSERT INTO {TABLE_NAME} (buddy_id, character_id, get_path, seesaa_url, aewiki_url, created_at) VALUES (:1, :2, :3, :4, :5, :6)",
             update_info
         )
         conn.commit()
