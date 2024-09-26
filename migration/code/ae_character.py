@@ -35,7 +35,7 @@ def get_alter_character(character, character_json) -> str:
             return target["code"]
     return None
 
-def update_ae_buddy():    
+def update_ae_dungeon():    
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     character_json: list = json.load(open('result/data/character.json', 'r', encoding='utf-8'))
     
@@ -86,6 +86,6 @@ def update_ae_buddy():
         conn.commit()
 
 if __name__ == "__main__":
-    update_ae_buddy()
+    update_ae_dungeon()
 
 
