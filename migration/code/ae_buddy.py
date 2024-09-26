@@ -11,7 +11,7 @@ def update_ae_buddy():
         lambda x: [
             "buddy" + str(x['id']), 
             "char" + str(x['link'][0]) if x['link'] else None,
-            x['get'],
+            x['get'] if x['get'] and x['get'].strip() != "get.notfree" else None,
             x['seesaa'],
             x['aewiki']
         ],
