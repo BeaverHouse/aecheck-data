@@ -47,6 +47,7 @@ def update_ae_buddy():
             get_style(x),
             "light" if "type.light" in x["tags"] else "dark",
             get_manifest_level(x),
+            "staralign.true" in x["tags"],
             get_alter_character(x, character_json),
             x["seesaa"],
             x["aewiki"],
@@ -72,12 +73,13 @@ def update_ae_buddy():
                 style,
                 light_shadow,
                 manifest_level,
+                is_awaken,
                 alter_character,
                 seesaa_url,
                 aewiki_url,
                 created_at
             ) VALUES (
-                :1, :2, :3, :4, :5, :6, :7, :8, :9, :10
+                :1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11
             )""",
             update_info
         )

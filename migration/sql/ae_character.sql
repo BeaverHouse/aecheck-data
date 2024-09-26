@@ -5,6 +5,7 @@ CREATE TABLE ae_character (
     style                   VARCHAR2(10) NOT NULL,
     light_shadow            VARCHAR2(10) NOT NULL,
     max_manifest            NUMBER(3) NOT NULL,
+    is_awaken               BOOLEAN NOT NULL,
     alter_character         VARCHAR2(20) NOT NULL,
     seesaa_url              VARCHAR2(500),
     aewiki_url              VARCHAR2(500),
