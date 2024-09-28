@@ -1,9 +1,10 @@
 import json
 import datetime
+from psycopg2.extras import execute_values
 
-from oracle import get_oracle
+from postgres import get_postgres
 
-TABLE_NAME = "ae_dungeon"
+TABLE_NAME = "aecheck.ae_dungeon"
 
 def update_ae_dungeon():    
     time = datetime.datetime.now()
@@ -14,22 +15,23 @@ def update_ae_dungeon():
             "dungeon" + str(x['id']).zfill(4), 
             x['altema'],
             x['wiki'],
-            time
         ],
         dungeon_json
     ))
 
-    with get_oracle() as conn:
+    with get_postgres() as conn:
         cur = conn.cursor()
-        current_ids = list(map(lambda x: x[0], cur.execute(f"SELECT dungeon_id FROM {TABLE_NAME}").fetchall()))
+        cur.execute(f"SELECT dungeon_id FROM {TABLE_NAME}")
+        current_ids = list(map(lambda x: x[0], cur.fetchall()))
             
         update_info = [x for x in dungeon_data if x[0] not in current_ids]
 
         if not update_info:
             print("nothing to update")
             return
-        cur.executemany(
-            f"INSERT INTO {TABLE_NAME} (dungeon_id, altema_url, aewiki_url, created_at) VALUES (:1, :2, :3, :4)",
+        execute_values(
+            cur,
+            f"INSERT INTO {TABLE_NAME} (dungeon_id, altema_url, aewiki_url) VALUES %s",
             update_info
         )
         conn.commit()

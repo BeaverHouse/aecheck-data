@@ -1,9 +1,10 @@
 import json
 import datetime
+from psycopg2.extras import execute_values
 
-from oracle import get_oracle
+from postgres import get_postgres
 
-TABLE_NAME = "ae_character"
+TABLE_NAME = "aecheck.ae_character"
 
 def get_category(character) -> str:
     colab_personalities = [
@@ -48,26 +49,27 @@ def update_ae_dungeon():
             get_style(x),
             "light" if "type.light" in x["tags"] else "dark",
             get_manifest_level(x),
-            1 if "staralign.true" in x["tags"] else 0,
-            1 if "alter.true" in x["tags"] else 0,
+            "staralign.true" in x["tags"],
+            "alter.true" in x["tags"],
             f'c{get_alter_character(x, character_json)}' if get_alter_character(x, character_json) else None,
             x["seesaa"] if "seesaa" in x else None,
             x["aewiki"] if "aewiki" in x else None,
-            datetime.datetime.strptime(x["year"], "%Y/%m/%d") if "year" in x else None,
-            time
+            datetime.datetime.strptime(x["year"], "%Y/%m/%d") if "year" in x else None
         ],
         character_json
     ))
 
-    with get_oracle() as conn:
+    with get_postgres() as conn:
         cur = conn.cursor()
-        current_ids = list(map(lambda x: x[0], cur.execute(f"SELECT character_id FROM {TABLE_NAME}").fetchall()))
+        cur.execute(f"SELECT character_id FROM {TABLE_NAME}")
+        current_ids = list(map(lambda x: x[0], cur.fetchall()))
             
         update_info = [x for x in character_data if x[0] not in current_ids]
         if not update_info:
             print("nothing to update")
             return
-        cur.executemany(
+        execute_values(
+            cur,
             f"""INSERT INTO {TABLE_NAME} (
                 character_id,
                 character_code,
@@ -80,11 +82,8 @@ def update_ae_dungeon():
                 alter_character,
                 seesaa_url,
                 aewiki_url,
-                update_date,
-                created_at
-            ) VALUES (
-                :1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13
-            )""",
+                update_date
+            ) VALUES %s""",
             update_info
         )
         conn.commit()

@@ -1,9 +1,10 @@
 import json
 import datetime
+from psycopg2.extras import execute_values
 
-from oracle import get_oracle
+from postgres import get_postgres
 
-TABLE_NAME = "ae_i18n"
+TABLE_NAME = "aecheck.ae_i18n"
 
 buddy_json: list = json.load(open('result/data/buddy.json', 'r', encoding='utf-8'))
 
@@ -34,19 +35,18 @@ def update_ae_i18n():
             ko_json[x],
             en_json[x],
             ja_json[x],
-            time
         ],
         ko_json.keys()
     ))
 
-    with get_oracle() as conn:
+    with get_postgres() as conn:
         cur = conn.cursor()
 
         cur.execute(f"DELETE FROM {TABLE_NAME}")
-        conn.commit()
 
-        cur.executemany(
-            f"INSERT INTO {TABLE_NAME} (key, ko, en, ja, created_at) VALUES (:1, :2, :3, :4, :5)",
+        execute_values(
+            cur,
+            f"INSERT INTO {TABLE_NAME} (key, ko, en, ja) VALUES %s",
             i18n_data
         )
 
