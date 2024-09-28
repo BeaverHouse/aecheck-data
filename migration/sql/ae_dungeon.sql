@@ -1,4 +1,4 @@
-CREATE TABLE ae_dungeon (
+CREATE TABLE dungeons (
     dungeon_id          VARCHAR(20) NOT NULL,
     altema_url          VARCHAR(500),
     aewiki_url          VARCHAR(500),

@@ -4,7 +4,7 @@ from psycopg2.extras import execute_values
 
 from postgres import get_postgres
 
-TABLE_NAME = "aecheck.ae_dungeon_map"
+TABLE_NAME = "aecheck.dungeon_mappings"
 
 def update_ae_dungeon_map():    
     time = datetime.datetime.now()

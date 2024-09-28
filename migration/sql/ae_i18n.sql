@@ -1,4 +1,4 @@
-CREATE TABLE ae_i18n (
+CREATE TABLE translations (
     key                 VARCHAR(50) NOT NULL,
     ko                  VARCHAR(500) NOT NULL,
     en                  VARCHAR(500) NOT NULL,

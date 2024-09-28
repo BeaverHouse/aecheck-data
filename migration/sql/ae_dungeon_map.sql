@@ -1,4 +1,4 @@
-CREATE TABLE ae_dungeon_map (
+CREATE TABLE dungeon_mappings (
     id              SERIAL PRIMARY KEY,
     character_id    VARCHAR(20) NOT NULL,
     dungeon_id      VARCHAR(20) NOT NULL,

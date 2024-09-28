@@ -1,4 +1,4 @@
-CREATE TABLE ae_personality_map (
+CREATE TABLE personality_mappings (
     id              SERIAL PRIMARY KEY,
     character_id    VARCHAR(20) NOT NULL,
     personality_id  VARCHAR(20) NOT NULL,

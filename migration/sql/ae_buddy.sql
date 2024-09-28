@@ -1,4 +1,4 @@
-CREATE TABLE ae_buddy (
+CREATE TABLE buddies (
 	buddy_id            VARCHAR(10) NOT NULL,
     character_id        VARCHAR(10),
     get_path            VARCHAR(20),

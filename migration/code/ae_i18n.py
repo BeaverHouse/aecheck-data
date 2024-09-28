@@ -4,7 +4,7 @@ from psycopg2.extras import execute_values
 
 from postgres import get_postgres
 
-TABLE_NAME = "aecheck.ae_i18n"
+TABLE_NAME = "aecheck.translations"
 
 buddy_json: list = json.load(open('result/data/buddy.json', 'r', encoding='utf-8'))
 

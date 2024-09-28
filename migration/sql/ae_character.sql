@@ -1,4 +1,4 @@
-CREATE TABLE ae_character (
+CREATE TABLE characters (
     character_id            VARCHAR(20) NOT NULL,
     character_code          VARCHAR(20) NOT NULL,
     category                VARCHAR(20) NOT NULL,

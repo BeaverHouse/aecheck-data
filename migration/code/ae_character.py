@@ -4,7 +4,7 @@ from psycopg2.extras import execute_values
 
 from postgres import get_postgres
 
-TABLE_NAME = "aecheck.ae_character"
+TABLE_NAME = "aecheck.characters"
 
 def get_category(character) -> str:
     colab_personalities = [

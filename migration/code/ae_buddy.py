@@ -4,7 +4,7 @@ from psycopg2.extras import execute_values
 
 from postgres import get_postgres
 
-TABLE_NAME = "aecheck.ae_buddy"
+TABLE_NAME = "aecheck.buddies"
 
 def update_ae_buddy():    
     time = datetime.datetime.now()

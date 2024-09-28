@@ -4,7 +4,7 @@ from psycopg2.extras import execute_values
 
 from postgres import get_postgres
 
-TABLE_NAME = "aecheck.ae_personality_map"
+TABLE_NAME = "aecheck.personality_mappings"
 
 def update_ae_personality_map():    
     time = datetime.datetime.now()
