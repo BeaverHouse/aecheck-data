@@ -1,9 +1,10 @@
 import json
 import datetime
+from psycopg2.extras import execute_values
 
-from oracle import get_oracle
+from postgres import get_postgres
 
-TABLE_NAME = "ae_buddy"
+TABLE_NAME = "aecheck.ae_buddy"
 
 def update_ae_buddy():    
     time = datetime.datetime.now()
@@ -15,22 +16,23 @@ def update_ae_buddy():
             "char" + str(x['link'][0]).zfill(4) if x['link'] else None,
             x['get'] if x['get'] and x['get'].strip() != "get.notfree" else None,
             x['seesaa'],
-            x['aewiki'],
-            time
+            x['aewiki']
         ],
         buddy_json
     ))
 
-    with get_oracle() as conn:
+    with get_postgres() as conn:
         cur = conn.cursor()
-        current_ids = list(map(lambda x: x[0], cur.execute(f"SELECT buddy_id FROM {TABLE_NAME}").fetchall()))
+        cur.execute(f"SELECT buddy_id FROM {TABLE_NAME}")
+        current_ids = list(map(lambda x: x[0], cur.fetchall()))
             
         update_info = [x for x in buddy_data if x[0] not in current_ids]
         if not update_info:
             print("nothing to update")
             return
-        cur.executemany(
-            f"INSERT INTO {TABLE_NAME} (buddy_id, character_id, get_path, seesaa_url, aewiki_url, created_at) VALUES (:1, :2, :3, :4, :5, :6)",
+        execute_values(
+            cur,
+            f"INSERT INTO {TABLE_NAME} (buddy_id, character_id, get_path, seesaa_url, aewiki_url) VALUES %s",
             update_info
         )
         conn.commit()

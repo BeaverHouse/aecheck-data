@@ -1,9 +1,10 @@
 import json
 import datetime
+from psycopg2.extras import execute_values
 
-from oracle import get_oracle
+from postgres import get_postgres
 
-TABLE_NAME = "ae_personality_map"
+TABLE_NAME = "aecheck.ae_personality_map"
 
 def update_ae_personality_map():    
     time = datetime.datetime.now()
@@ -16,22 +17,18 @@ def update_ae_personality_map():
             update_info.append([
                 f'char{str(character["id"]).zfill(4)}',
                 f'personality{personality.replace("personality.p", "")}',
-                time
             ])
 
-    with get_oracle() as conn:
+    with get_postgres() as conn:
         cur = conn.cursor()
         cur.execute(f"DELETE FROM {TABLE_NAME} WHERE character_id LIKE 'char%'")
-        conn.commit()
             
-        cur.executemany(
+        execute_values(
+            cur,
             f"""INSERT INTO {TABLE_NAME} (
                 character_id,
-                personality_id,
-                created_at
-            ) VALUES (
-                :1, :2, :3
-            )""",
+                personality_id
+            ) VALUES %s""",
             update_info
         )
         conn.commit()
