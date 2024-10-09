@@ -56,6 +56,13 @@ PARSE_REF_DICT = {
     }
 }
 
+SEESAA_MAPPING = {
+    "草薙京" : "京",
+    "テリー・ボガード" : "テリー",
+    "不知火舞" : "舞",
+    "クーラ・ダイアモンド" : "クーラ",
+}
+
 AC_MAPPING = {
     "碧光の鎌使い": "Suzette_(Alter)",
     "紫装の槍使い": "Toova_(Alter)",
