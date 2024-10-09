@@ -13,7 +13,8 @@ from config import (
     RESULT_PATH,
     PARSE_REF_DICT,
     IMG_SOURCE_PATH,
-    AC_MAPPING
+    AC_MAPPING,
+    SEESAA_MAPPING,
 )
 from function import init_folder, write_json
 import sys
@@ -109,6 +110,8 @@ def make_data(wb: Workbook):
                 eng_keyword = row[3].value.split(" ")[0] if "(Tales)" in row[3].value else row[3].value
                 if keyword in AC_MAPPING.keys():
                     eng_keyword = AC_MAPPING[keyword]
+                if keyword in SEESAA_MAPPING.keys():
+                    keyword = SEESAA_MAPPING[keyword]
                 break
         if len(keyword) <= 0:
             print(f"번역 정보가 없습니다. id : {id}")
@@ -125,7 +128,7 @@ def make_data(wb: Workbook):
             tags += list(map(lambda x: find_personality_tag(translate_df, x), p_tag_list.split(",")))
 
         # 업데이트 지연에 따른 조건문...
-        if id <= 379:
+        if id <= 392:
             # Seesaa Wiki Mapping
             seesaa_endpoint = keyword.replace("(AS)", "(アナザースタイル)") \
                 .replace("(ES)", "(エクストラスタイル)") \
