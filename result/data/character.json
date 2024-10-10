@@ -8584,7 +8584,8 @@
 		],
 		"from": [],
 		"change": [
-			315
+			315,
+			393
 		],
 		"dungeon_drop": [],
 		"year": "2023/04/12",
@@ -8608,7 +8609,9 @@
 		"from": [
 			314
 		],
-		"change": [],
+		"change": [
+			393
+		],
 		"dungeon_drop": [
 			1
 		],
@@ -10646,6 +10649,31 @@
 		"year": "2024/09/19",
 		"seesaa": "https://anothereden.game-info.wiki/d/%A5%B7%A5%B0%A5%EC%28%A5%A8%A5%AF%A5%B9%A5%C8%A5%E9%A5%B9%A5%BF%A5%A4%A5%EB%29",
 		"aewiki": "https://anothereden.wiki/w/Shigure_(Extra_Style)"
+	},
+	{
+		"id": 393,
+		"code": 101020161,
+		"tags": [
+			"alter.false",
+			"get.notfree",
+			"manifest.step0",
+			"personality.p003",
+			"personality.p012",
+			"personality.p058",
+			"staralign.true",
+			"style.another",
+			"type.shadow"
+		],
+		"from": [],
+		"change": [
+			315
+		],
+		"dungeon_drop": [
+			1001
+		],
+		"year": "2024/10/10",
+		"seesaa": null,
+		"aewiki": null
 	},
 	{
 		"id": 1000,
